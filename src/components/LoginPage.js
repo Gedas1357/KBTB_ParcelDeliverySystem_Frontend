@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from 'axios';
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import "../App.css"
 import { checkSessionExpiration } from '../AuthCheck';
 
@@ -8,11 +8,13 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     useEffect(() => { //sitas pasileidzia kiekviena karta uzkrovus /login, patikrina ar sesija dar valid
         
         try {
             console.log('boop');
-
+            navigate('/homepage');
             checkSessionExpiration();
             //sicia jau reiktu redirect i koki homepage permest
           } catch (error) {
