@@ -8,15 +8,16 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    useEffect(() => { //sitas pasileidzia kiekviena karta uzkrovus /login, patikrina ar sesija dar valid, jei ne, reiktu redirect
+    useEffect(() => { //sitas pasileidzia kiekviena karta uzkrovus /login, patikrina ar sesija dar valid
         
         try {
             console.log('boop');
 
             checkSessionExpiration();
+            //sicia jau reiktu redirect i koki homepage permest
           } catch (error) {
             console.log('boop');
-            //NEED TO REDIRECT i koki nors defualt psl , NERADAU KOLKAS KAIP
+            //reiskia baigesi laikas, nzn ar mest kazkoki pranesima, bet redirect butent cia visgi nereikia
           }
       }, []);
 
@@ -31,10 +32,11 @@ const LoginPage = () => {
         try {
             console.log(headers);
        
+/* gal net nereikia nzn kodel palikau
             //biski cringe bet ant greicio darau sorry, tereikia kad praeitu requestas koks nors, ir jau skaitosi kad tipo ok authorized xD 
             //aisku butu geriau i koki login controller kreiptis 
             const response = await axios.get('http://localhost:8080/api/V1/parcel', { headers });
-
+*/
 
             localStorage.setItem('authHeader', JSON.stringify(headers));
             

@@ -13,7 +13,7 @@ const UserInfoForm = () => {
 
   useEffect(() => {
    
-    const fetchUserInfo = async () => {
+    const fetchUserInfo = async () => { 
 
         const authHeader = JSON.parse(localStorage.getItem('authHeader'));
 
@@ -36,35 +36,32 @@ const UserInfoForm = () => {
             const id  = response.data;
             setId(id);
             console.log(id);
+
+            if (authHeader ) {
+                        console.log('Authorization Header:', authHeader);
+                        try {
+                            console.log('aidi',id);
+                            const response = await axios.get('http://localhost:8080/api/V1/customer/' + id, { headers: authHeader }); 
+                            console.log(response);
+                            const { username } = response.data;
+                            const { email } = response.data;
+                            ///const { id } = response.data;
+                            const {version} = response.data;
+                            setUsername(username);
+                            setEmail(email);
+                            //setId(id);
+                            setVersion(version);
+                    } catch (error) {
+                    console.error('Error fetching user info:', error);
+                }
+                    } else {
+                        console.log('User not authenticated');
+                    }
+
         } catch (error) {
         console.error('err:', error);
         
-        }
-
-        if (authHeader) {
-            console.log('Authorization Header:', authHeader);
-             try {
-
-                const response = await axios.get(`http://localhost:8080/api/V1/customer/${id}`, { headers: authHeader }); 
-                console.log(response);
-                const { username } = response.data;
-                const { email } = response.data;
-                ///const { id } = response.data;
-                const {version} = response.data;
-                setUsername(username);
-                setEmail(email);
-                //setId(id);
-                setVersion(version);
-          } catch (error) {
-        console.error('Error fetching user info:', error);
-      }
-            // Continue with the remaining code to fetch user info and update state
-          } else {
-            //console.log(authHeader);
-            console.log('User not authenticated');
-            // Handle the case when the user is not authenticated
-          }
-         
+        }   
     };
 
     fetchUserInfo();
