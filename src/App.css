@@ -80,4 +80,39 @@
   #loginButton {
     @apply border-2 border-black rounded-lg bg-violet-300 font-semibold w-full h-16 ;
   }
+  .payment-page {
+    @apply flex flex-col items-center justify-center h-screen;
+  }
+
+  .payment-box {
+    @apply flex flex-col items-center justify-between w-1/2 h-1/2 border-2 border-indigo-500 p-10;
+  }
+
+  .card-details div, .paypal-details div {
+    @apply flex justify-between w-full;
+  }
+
+  .card-details input, .paypal-details input {
+    @apply m-2 border-2 border-black rounded-md;
+  }
+
+  .payment-methods {
+    @apply flex justify-center flex-wrap;
+  }
+
+  .payment-methods button {
+    @apply m-2 border-2 border-black rounded-lg bg-violet-300 font-semibold;
+  }
+
+  .action-buttons {
+    @apply flex justify-center mt-8;
+  }
+
+  .confirm-button {
+    @apply bg-green-500 text-white px-10 py-2 m-2;
+  }
+
+  .cancel-button {
+    @apply bg-red-500 text-white px-10 py-2 m-2;
+  }
 }
