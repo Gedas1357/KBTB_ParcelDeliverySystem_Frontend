@@ -6,6 +6,7 @@ const UserInfoForm = () => {
   const [username, setUsername] = useState('');
   const [id, setId] = useState('');
   const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
   const [version, setVersion] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showActionButtons, setShowActionButtons] = useState(false);
@@ -45,11 +46,11 @@ const UserInfoForm = () => {
                             console.log(response);
                             const { username } = response.data;
                             const { email } = response.data;
-                            ///const { id } = response.data;
+                            const { address } = response.data;
                             const {version} = response.data;
                             setUsername(username);
                             setEmail(email);
-                            //setId(id);
+                            setAddress(address);
                             setVersion(version);
                     } catch (error) {
                     console.error('Error fetching user info:', error);
@@ -69,14 +70,16 @@ const UserInfoForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const authHeader = JSON.parse(localStorage.getItem('authHeader'));
 
     try {
-     
+        console.log(authHeader );
       await axios.put(`http://localhost:8080/api/V1/customer/${id}`, {
         username,
         email,
+        address,
         version
-      });
+      },  { headers: authHeader });
 
      // const response = await axios.get(`http://localhost:8080/api/V1/customer/${id}`);
       
@@ -109,11 +112,38 @@ const UserInfoForm = () => {
   };
 
   //dar nzn ar veiks 
-  const handleBlindOverwrite = async() => {
-    const response = await axios.get(`http://localhost:8080/api/V1/customer/${id}`);
-    const {newVersion} = response.data;
-    setVersion(newVersion);
-    handleFormSubmit();
+  const handleBlindOverwrite = async(event) => {
+    event.preventDefault();
+    const authHeader = JSON.parse(localStorage.getItem('authHeader'));
+
+    try {
+        const response = await axios.get(`http://localhost:8080/api/V1/customer/${id}`, { headers: authHeader });
+        const version = response.data.version;
+        try {
+            //console.log('ver:', version);
+            await axios.put(`http://localhost:8080/api/V1/customer/${id}`, {
+                username,
+                email,
+                address,
+                version
+            },  { headers: authHeader });
+
+            window.location.reload();
+            console.log('User information updated successfully');
+        
+        } catch (error) {
+            if (error.response && error.response.status === 409) {
+                setErrorMessage('Conflict occurred while updating user, choose one of the following actions:');
+                setShowActionButtons(true); 
+        //console.error('Error updating user information:', error);
+        }
+        else {
+            console.error('Error updating user information:', error);
+        }
+        }
+      } catch (error) {
+        console.error('Error fetching user information:', error);
+      }
   };
 
   return (
@@ -124,7 +154,7 @@ const UserInfoForm = () => {
         <div>
          <button onClick={() => handleReload()}>Reload page</button>
           <button onClick={() => handleCompareAndTryAgain()}>Compare with new information and try again</button>
-          <button onClick={() => handleBlindOverwrite()}>Try again with same information</button>
+          <button  onClick={handleBlindOverwrite}>Try again with same information</button>
         </div>
       )}
     <form onSubmit={handleFormSubmit}>
@@ -143,6 +173,15 @@ const UserInfoForm = () => {
           type="text"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Address:
+        <input
+          type="text"
+          value={address}
+          onChange={(event) => setAddress(event.target.value)}
         />
       </label>
       <br />
