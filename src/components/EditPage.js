@@ -106,10 +106,6 @@ const UserInfoForm = () => {
     window.location.reload();
   };
 
-  ///dar reiks implementuot
-  const handleCompareAndTryAgain = () => {
-    window.location.reload();
-  };
 
   //dar nzn ar veiks 
   const handleBlindOverwrite = async(event) => {
@@ -152,21 +148,11 @@ const UserInfoForm = () => {
     {errorMessage && <p>{errorMessage}</p>}
       {showActionButtons && (
         <div>
-         <button onClick={() => handleReload()}>Reload page</button>
-          <button onClick={() => handleCompareAndTryAgain()}>Compare with new information and try again</button>
+         <button onClick={() => handleReload()}>Reload page to see new information and try again</button>
           <button  onClick={handleBlindOverwrite}>Try again with same information</button>
         </div>
       )}
     <form onSubmit={handleFormSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </label>
-      <br />
       <label>
         Email:
         <input
