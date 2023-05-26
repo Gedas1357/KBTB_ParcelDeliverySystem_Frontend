@@ -25,6 +25,12 @@ function PaymentPage() {
             } else {
                 alert("Your payment was successful");
             }
+        } else if(paymentMethod === 'Crypto') {
+            if(!email) {
+                alert("Please fill all fields.");
+            } else {
+                alert("Your payment was successful");
+            }
         } else {
             alert("Unsupported payment method.");
         }
@@ -41,7 +47,7 @@ function PaymentPage() {
     return (
         <div className="payment-page">
             <div className="payment-box">
-                <h2>{paymentMethod === 'Card' ? 'Card Details' : 'PayPal Details'}</h2>
+                <h2>{paymentMethod === 'Card' ? 'Card Details' : paymentMethod === 'PayPal' ? 'PayPal Details' : 'Crypto Details'}</h2>
                 {
                     paymentMethod === 'Card'
                         ?
@@ -59,11 +65,17 @@ function PaymentPage() {
                             </div>
                         </div>
                         :
-                        <div className="paypal-details">
-                            <input onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
-                            <input onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
-                            <input onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                        </div>
+                        paymentMethod === 'PayPal'
+                            ?
+                            <div className="paypal-details">
+                                <input onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
+                                <input onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
+                                <input onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                            </div>
+                            :
+                            <div className="crypto-details">
+                                <input onChange={(e) => setEmail(e.target.value)} placeholder="Your E-mail for payment receipt" />
+                            </div>
                 }
                 <h2>Choose Your Payment Method</h2>
                 <div className="payment-methods">
