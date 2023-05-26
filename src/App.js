@@ -7,6 +7,7 @@ import CustomerForm from "./components/CustomerForm";
 import ParcelForm from "./components/ParcelForm";
 import CustomerTable from "./components/CustomerTable";
 import ParcelTable from "./components/ParcelTable";
+import PaymentPage from "./components/PaymentPage";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   return (<Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/edit-info" element={<EditPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
             <Route path="/homepage" element={
                 <div className="w-full p-4 h-screen flex flex-row justify-evenly">
                     <div className='basis-1/2 h-5/6 flex flex-col justify-evenly'>
