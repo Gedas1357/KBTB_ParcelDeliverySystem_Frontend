@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
 }
@@ -34,5 +38,46 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@layer base {
+  h1 {
+    @apply font-bold text-lg;
+  }
+  th {
+    @apply border-2 border-indigo-500 w-screen;
+  }
+  tr {
+    @apply bg-violet-200;
+  }
+  td {
+    @apply border-2 border-indigo-500/50 text-center align-middle;
+  }
+  form {
+    @apply flex flex-col justify-evenly w-full h-full border-2 border-indigo-500 rounded-lg bg-violet-200;
+  }
+  label {
+    @apply font-semibold self-center;
+  }
+  input {
+    @apply border-2 border-black rounded-md w-10/12 self-center;
+  }
+  select {
+    @apply border-2 border-black rounded-md w-10/12 self-center;
+  }
+  button {
+    @apply border-2 border-black rounded-lg bg-violet-300 font-semibold w-10/12 self-center;
+  }
+}
+@layer components {
+  .tableHeader {
+    @apply bg-violet-300 h-2/5 w-full justify-stretch;
+  }
+  .form {
+    @apply flex flex-col w-full h-3/6;
+  }
+  #loginButton {
+    @apply border-2 border-black rounded-lg bg-violet-300 font-semibold w-full h-16 ;
   }
 }
