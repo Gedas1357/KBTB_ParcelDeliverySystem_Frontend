@@ -10,7 +10,6 @@ const ParcelReceivedTable = () => {
     useEffect(() => {
         const fetchCustomers = async () => {
             try {
-                console.log("works");
                 const data = await getCustomerById();
                 setParcels(data.incomingParcels);
             } catch (error) {}

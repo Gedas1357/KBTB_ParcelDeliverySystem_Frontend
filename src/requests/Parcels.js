@@ -14,10 +14,9 @@ export const getParcels = async () => {
     }
 };
 
-export const postParcel = async (sender, receiver, deliveryMethod, address, size) => {
+export const postParcel = async (sender, receiver, deliveryMethod, address, size, navigate) => {
     const authHeader = JSON.parse(localStorage.getItem('authHeader'));
     const expTime = localStorage.getItem('expTime');
-    console.log("sender " + sender + " receiver " + receiver + " deliveryMethod " + deliveryMethod + " address " + address + " size " + size)
     axios.post('http://localhost:8080/api/V1/parcel', {
             senderId: parseInt(sender),
             receiverId: parseInt(receiver),
@@ -28,7 +27,7 @@ export const postParcel = async (sender, receiver, deliveryMethod, address, size
             params: { expirationTime: expTime },
             headers: authHeader})
         .then(res => {
-            console.log(res);
+            navigate('/payment');
         }).catch(err => {
         console.log(err)
     })

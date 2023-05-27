@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from 'axios';
 import {getCustomers} from '../requests/Customers';
 import {postParcel} from '../requests/Parcels';
+import {useNavigate} from 'react-router-dom';
 
 const ParcelForm = () => {
 
@@ -11,9 +12,10 @@ const ParcelForm = () => {
     const [deliveryMethod, setDeliveryMethod] = useState('TERMINAL_TERMINAL');
     const [address, setAddress] = useState('');
     const [size, setSize] = useState('SMALL');
+    const navigate = useNavigate();
 
     const Post = () => {
-        postParcel(sender, receiver, deliveryMethod, address, size);
+        postParcel(sender, receiver, deliveryMethod, address, size, navigate);
     }
 
     const [customers, setCustomers] = useState([])
@@ -30,7 +32,7 @@ const ParcelForm = () => {
     }, []);
 
     const handleSubmit = event => {
-        //event.preventDefault();
+        event.preventDefault();
     }
 
     return (
