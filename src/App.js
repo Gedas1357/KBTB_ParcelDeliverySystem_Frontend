@@ -5,7 +5,8 @@ import LoginPage from "./components/LoginPage";
 import EditPage from "./components/EditPage";
 import ParcelForm from "./components/ParcelForm";
 import CustomerPage from "./components/CustomerPage";
-import ParcelTable from "./components/ParcelTable";
+import ParcelSentTable from "./components/ParcelSentTable";
+import ParcelReceivedTable from "./components/ParcelReceivedTable";
 import NavBar from "./components/NavBar";
 import PaymentPage from "./components/PaymentPage";
 import "./App.css";
@@ -23,9 +24,10 @@ function App() {
                     <NavBar />
                     <div className="w-full p-4 h-screen flex flex-row justify-evenly">
                         <div className='basis-1/2 h-5/6 flex flex-col justify-evenly'>
-
-                            <h1 className="self-center">Parcels</h1>
-                            <ParcelTable/>
+                            <h1 className="self-center">Parcels sent</h1>
+                            <ParcelSentTable/>
+                            <h1 className="self-center">Incoming parcels</h1>
+                            <ParcelReceivedTable/>
                         </div>
                         <div className='basis-1/6 h-5/6 flex flex-col justify-evenly'>
                             <h1 className="self-center">Add a new parcel</h1>
