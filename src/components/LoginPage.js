@@ -11,14 +11,11 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => { //sitas pasileidzia kiekviena karta uzkrovus /login, patikrina ar sesija dar valid
-        
+    useEffect(() => {
         try {
             checkSessionExpiration(navigate);
-            //sicia jau reiktu redirect i koki homepage permest
           } catch (error) {
             console.log(error);
-            //reiskia baigesi laikas, nzn ar mest kazkoki pranesima, bet redirect butent cia visgi nereikia
           }
       }, []);
 
@@ -54,7 +51,7 @@ const LoginPage = () => {
             </div>
                 <div className="flex flex-col justify-evenly self-center h-3/5 basis-1/5">
                 <h1 className="self-center">Register</h1>
-            <Register/>
+            <Register className='basis-4/5'/>
             </div>
         </div>
     )

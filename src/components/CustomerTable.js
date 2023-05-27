@@ -22,7 +22,7 @@ const CustomerTable = () => {
     }
 
     return (
-        <div className='basis-5/12 border-2 border-black overflow-y-scroll'>
+        <div className='basis-7/12 max-h-6/12 border-2 border-black overflow-y-scroll self-center'>
             <table>
                 <tr className='tableHeader'>
                     <th>Id</th>

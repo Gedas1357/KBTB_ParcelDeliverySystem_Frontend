@@ -18,7 +18,7 @@ const Register = () => {
     }
 
     return (
-            <form onSubmit={handleSubmit} className='basis-4/5'>
+            <form onSubmit={handleSubmit}>
                 <label>Username:</label>
                 <input
                     type="text"
