@@ -1,6 +1,7 @@
 import "../App.css"
 import {useState} from "react";
 import axios from 'axios';
+import {postCustomer} from '../requests/Customers';
 
 const CustomerForm = () => {
 
@@ -10,17 +11,7 @@ const CustomerForm = () => {
     const [address, setAddress] = useState("");
 
     const Post = () => {
-        axios.post('http://localhost:8080/api/V1/customer', {
-            username: username,
-            password: password,
-            email: email,
-            address: address
-        })
-            .then(res => {
-                console.log(res.data)
-            }).catch(err => {
-            console.log(err)
-        })
+        postCustomer(username, password, email, address);
     }
 
     const handleSubmit = event => {

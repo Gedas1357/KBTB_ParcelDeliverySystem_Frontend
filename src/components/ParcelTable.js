@@ -1,18 +1,20 @@
 import "../App.css"
 import {useEffect, useState} from "react";
 import axios from 'axios';
+import {getParcels} from '../requests/Parcels';
 
 const ParcelTable = () => {
 
     const [parcels, setParcels] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/V1/parcel')
-            .then(res => {
-                setParcels(res.data)
-            }).catch(err => {
-            console.log(err)
-        })
+        const fetchCustomers = async () => {
+            try {
+                const data = await getParcels();
+                setParcels(data);
+            } catch (error) {}
+        };
+        fetchCustomers();
     }, [])
 
     const handleSubmit = event => {

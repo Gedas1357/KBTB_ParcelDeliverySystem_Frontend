@@ -1,6 +1,8 @@
 import "../App.css"
 import {useEffect, useState} from "react";
 import axios from 'axios';
+import {getCustomers} from '../requests/Customers';
+import {postParcel} from '../requests/Parcels';
 
 const ParcelForm = () => {
 
@@ -11,33 +13,24 @@ const ParcelForm = () => {
     const [size, setSize] = useState('SMALL');
 
     const Post = () => {
-        axios.post('http://localhost:8080/api/V1/parcel', {
-            senderId: parseInt(sender),
-            receiverId: parseInt(receiver),
-            deliveryMethod: deliveryMethod,
-            deliveryAddress: address,
-            size: size})
-            .then(res => {
-                console.log(res.data)
-            }).catch(err => {
-            console.log(err)
-        })
+        postParcel(sender, receiver, deliveryMethod, address, size);
     }
 
     const [customers, setCustomers] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/V1/customer')
-            .then(res => {
-                setCustomers(res.data)
-                setSender(res.data[0].id);
-            }).catch(err => {
-            console.log(err)
-        })
-    }
-    , [])
+        const fetchCustomers = async () => {
+            try {
+                const data = await getCustomers();
+                setCustomers(data);
+                setSender(data[0].id);
+            } catch (error) {}
+        };
+        fetchCustomers();
+    }, []);
 
     const handleSubmit = event => {
+        //event.preventDefault();
     }
 
     return (
