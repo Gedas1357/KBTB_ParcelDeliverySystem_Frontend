@@ -1,19 +1,21 @@
 import "../App.css"
 import {useEffect, useState} from "react";
 import axios from 'axios';
+import {getCustomers} from '../requests/Customers';
 
 const CustomerTable = () => {
 
     const [customers, setCustomers] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/V1/customer')
-            .then(res => {
-                setCustomers(res.data)
-            }).catch(err => {
-            console.log(err)
-        })
-    }, [])
+        const fetchCustomers = async () => {
+            try {
+                const data = await getCustomers();
+                setCustomers(data);
+            } catch (error) {}
+        };
+        fetchCustomers();
+    }, []);
 
     const handleSubmit = event => {
         event.preventDefault();

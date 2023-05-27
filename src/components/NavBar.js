@@ -16,8 +16,8 @@ const NavBar = () => {
 
     return (
         <div className="flex flex-row w-screen h-14 justify-evenly items-center border-2 border-black">
-            <button className='basis-2/12 h-5/6'>Parcels</button>
-            <button className='basis-2/12 h-5/6'>Edit profile</button>
+            <button className='basis-2/12 h-5/6' onClick={parcelNav}>Parcels</button>
+            <button className='basis-2/12 h-5/6' onClick={editNav}>Edit profile</button>
             <button className='basis-2/12 h-5/6' onClick={logOut}>Log Out</button>
         </div>
     )

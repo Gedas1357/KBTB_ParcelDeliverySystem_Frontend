@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import {useNavigate} from "react-router-dom";
+import React from 'react';
 
 
 export const checkSessionExpiration = async (navigate: typeof useNavigate) => {
