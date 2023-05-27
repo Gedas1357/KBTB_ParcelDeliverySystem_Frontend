@@ -8,6 +8,7 @@ import ParcelForm from "./components/ParcelForm";
 import CustomerTable from "./components/CustomerTable";
 import ParcelTable from "./components/ParcelTable";
 import NavBar from "./components/NavBar";
+import PaymentPage from "./components/PaymentPage";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   return (<Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/edit-info" element={<><NavBar /><EditPage /> </>} />
+            <Route path="/payment" element={<PaymentPage />} />
             <Route path="/homepage" element={
                 <>
                     <NavBar />
