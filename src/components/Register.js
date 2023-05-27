@@ -3,7 +3,7 @@ import {useState} from "react";
 import axios from 'axios';
 import {postCustomer} from '../requests/Customers';
 
-const CustomerForm = () => {
+const Register = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -18,8 +18,7 @@ const CustomerForm = () => {
     }
 
     return (
-        <div className="form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='basis-4/5'>
                 <label>Username:</label>
                 <input
                     type="text"
@@ -50,8 +49,7 @@ const CustomerForm = () => {
                     />
                 <button onClick={Post}>Add customer</button>
             </form>
-        </div>
     )
 }
 
-export default CustomerForm;
+export default Register;
