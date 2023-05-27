@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link, useNavigate} from "react-router-dom"
 import "../App.css"
 import { checkSessionExpiration, login } from '../requests/Authentication';
+import Register from "./Register";
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -38,15 +39,22 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex flex-col w-screen h-screen justify-center">
-            <div className="flex flex-col justify-evenly self-center basis-2/5 w-1/6">
-            <form onSubmit={handleSubmit}>
-                <label>Username</label>
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-                <label>Password</label>
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                 <input type="submit" value="Log In" />
-                </form>
+        <div className="flex flex-row w-screen h-screen justify-evenly">
+            <div className="flex flex-col justify-evenly self-center h-2/5 basis-1/5">
+                <h1 className="self-center">Login</h1>
+                <div className="flex flex-col justify-evenly self-center basis-4/5 w-full">
+                    <form onSubmit={handleSubmit}>
+                        <label>Username</label>
+                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                        <label>Password</label>
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                        <input type="submit" value="Log In" />
+                    </form>
+                </div>
+            </div>
+                <div className="flex flex-col justify-evenly self-center h-3/5 basis-1/5">
+                <h1 className="self-center">Register</h1>
+            <Register/>
             </div>
         </div>
     )
